@@ -1,1 +1,2 @@
-# First_NextJs_Project
+First NextJs Project 
+I hope I complete it someday 🤕
