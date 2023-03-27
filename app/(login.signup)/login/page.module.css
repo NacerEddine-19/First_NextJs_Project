@@ -1,0 +1,62 @@
+.formContainer {
+    min-height: 100vh;
+    background-color: var(--light-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.formContainer form {
+    padding: 1rem;
+    width: 50rem;
+    border-radius: 0.8rem;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    background-color: var(--white);
+    text-align: center;
+}
+
+.formContainer form h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: var(--black);
+}
+
+.formContainer form .box {
+    width: 80%;
+    border-radius: 0.5rem;
+    background-color: var(--light-bg);
+    padding: 1.2rem 1.4rem;
+    font-size: 1.5rem;
+    color: var(--black);
+    border: var(--border);
+    margin: 1rem 0;
+}
+
+.formContainer form p {
+    padding-top: 1.5rem;
+    font-size: 2rem;
+    color: var(--black);
+}
+
+.formContainer form p a {
+    color: var(--red);
+}
+
+.formContainer form p a:hover {
+    text-decoration: underline;
+}
+
+.formContainer .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 1rem 3rem;
+    cursor: pointer;
+    color: var(--white);
+    background-color: var(--blue);
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+    text-transform: capitalize;
+}
