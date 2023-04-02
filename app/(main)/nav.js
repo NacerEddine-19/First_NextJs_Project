@@ -64,7 +64,7 @@ export default function Nav() {
 
     return (
         <nav className="flex navbar">
-            <Link href="/" className="logo"><img src="/photos/ofppt.png" width="180px" /></Link>
+            <Link href="/" className="logo"><img src="/photos/logo-1.png" width="180px" /></Link>
 
             <nav className={`nav flex ${menuOpen ? 'show' : 'dShow'}`}>
                 <Link className={`${selectedLink === "home" ? "activeLink" : "notActive"}`} data-active="home" data-value={'home'} onClick={handleClickLink} href="/">Accueil</Link>

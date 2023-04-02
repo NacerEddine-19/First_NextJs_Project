@@ -6,10 +6,10 @@ export default function Footer() {
                     <div className="col-1">
                         <h2>telecharger l'application</h2>
                         <p>telecharger l'application dispo android et ios</p><br />
-                        <img src="photos/laf.jpg" width="200px" />
+                        <img src="photos/play_app.png" width="300px" />
                     </div>
                     <div className="col-2">
-                        <img src="/photos/ofppt.png" width="180px" />
+                        <img className={'footer-img'} src="/photos/logo-1.png" width="180px" />
                         <p></p>
                     </div>
                     <div className="col-3">

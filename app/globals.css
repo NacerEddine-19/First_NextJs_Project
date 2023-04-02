@@ -535,6 +535,9 @@ link {
   list-style-type: none;
   margin-top: 3rem;
 }
+.footer-img{
+  opacity: .8;
+}
 
 .container {
   max-width: 1400px;
