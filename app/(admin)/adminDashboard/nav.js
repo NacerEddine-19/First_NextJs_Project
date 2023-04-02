@@ -3,47 +3,64 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBars } from "@fortawesome/free-solid-svg-icons"
 import Link from 'next/link'
 import useUser from '../../hooks/useUser';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Nav() {
     const router = useRouter();
     const [user, setUser, clearUser] = useUser();
     const [showBox, setShowBox] = useState(false);
-    useEffect(() => {
-        if (user && user.user_type === 'admin') {
-            router.push('../adminDashboard');
-        } else if (user && user.user_type === 'user') {
-            router.push(`/`);
-        } else {
-            router.push(`/login`);
-        }
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [selectedLink, setselectedLink] = useState();
 
-    }, [user]);
+
+    if (user) {
+        if (user?.user_type !== 'admin') {
+            router.push('/login')
+        }
+    } else {
+        // router.push('/login')
+    }
+    function handleClickLink(e) {
+        setselectedLink(e.target.dataset.value);
+        const link = e.target.getAttribute("data-active");
+        setselectedLink(link);
+    }
+    const logout = () => {
+        router.push('/')
+        clearUser()
+    }
+
     const toggleBox = () => {
         setShowBox(!showBox);
+    };
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
     };
     return (
         <nav className="flex navbar">
             <Link href="/" className="logo"><img src="/photos/ofppt.png" width="180px" /></Link>
 
-            <nav className="nav flex">
-                <Link data-active="home" href="/adminDashboard">Accueil</Link>
-                <Link data-active="products" href="/adminDashboard/products">Produits</Link>
-                <Link data-active="command" href="/adminDashboard/commandes">Commandes</Link>
-                <Link data-active="users" href="/adminDashboard/users">Utilisateurs</Link>
-                {/* <Link data-active="orders" href="#">messages</Link> */}
+            <nav className={`nav flex ${menuOpen ? 'show' : 'dShow'}`}>
+                <Link className={`${selectedLink === "home" ? "activeLink" : "notActive"}`} data-value={'home'} data-active="home" onClick={handleClickLink} href="/adminDashboard">Accueil</Link>
+                <Link className={`${selectedLink === "products" ? "activeLink" : "notActive"}`} data-value={'products'} data-active="products" onClick={handleClickLink} href="/adminDashboard/products">Produits</Link>
+                <Link className={`${selectedLink === "command" ? "activeLink" : "notActive"}`} data-value={'command'} data-active="command" onClick={handleClickLink} href="/adminDashboard/commandes">Commandes</Link>
+                <Link className={`${selectedLink === "users" ? "activeLink" : "notActive"}`} data-value={'users'} data-active="users" onClick={handleClickLink} href="/adminDashboard/users">Utilisateurs</Link>
+                <Link className={`${selectedLink === "message" ? "activeLink" : "notActive"}`} data-value={'message'} data-active="message" onClick={handleClickLink} href="/adminDashboard/message">Messages</Link>
+
             </nav>
             <div className="flex icons">
-                <FontAwesomeIcon className='bars fa-icon' icon={faBars} />
+                <FontAwesomeIcon onClick={toggleMenu} className='bars fa-icon' icon={faBars} />
                 <div className="user-log">
                     {user && <FontAwesomeIcon onClick={toggleBox} className="user-btn fa-icon" icon={faUser} />}
-                {showBox && <div className="user-box">
-                        <p>nom d' utilisateur : <span>{user.name}</span></p>
-                        <button className='delete-btn btn' onClick={clearUser}>Logout</button>
+                    {showBox && <div className="user-box">
+                        <p>nom d' utilisateur : <span>{user?.name}</span></p>
+                        <button className='delete-btn btn' onClick={logout}>Logout</button>
                     </div>}
                 </div>
             </div>
         </nav>
     );
 }
+

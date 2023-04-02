@@ -17,6 +17,7 @@ export default function ProductsManager() {
         setImage('blankImage.png');
     }
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -27,7 +28,7 @@ export default function ProductsManager() {
         formData.append("categorie", categorie);
         formData.append("image", image);
 
-        fetch("http://localhost/admin_manager.php", {
+        fetch("http://localhost/next/admin_manager.php", {
             method: "POST",
             body: formData,
         })
@@ -49,6 +50,7 @@ export default function ProductsManager() {
             });
     };
     const deleteProduct = (id) => {
+
         fetch(`http://localhost/next/admin_manager.php`, {
             method: "DELETE",
             headers: {
@@ -71,9 +73,9 @@ export default function ProductsManager() {
     }
     return (
         <>
+            <h1 className="title">AJOUTER UN PRODUIT</h1>
             <div className="admin-prod">
                 <section className="add-products">
-                    <h1 className="title">LES PRODUITS</h1>
                     <form onSubmit={handleSubmit} encType="multipart/form-data">
                         <h3>AJOUTER UN PRODUIT</h3>
                         <input

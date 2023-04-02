@@ -5,9 +5,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
 import useUser from '../hooks/useUser';
-export default function Product({ product, handleDelete, handleDeleteFromCart, handleCountChangeDB }) {
+export default function Product({ product, deletion, handleDeleteFromCart, handleCountChangeDB }) {
     const [numProd, setNumProd] = useState(handleCountChangeDB ? parseInt(product.quantity) : 1);
     const [user] = useUser();
+
+
 
     function addProd() {
         if (isNaN(numProd)) {
@@ -48,30 +50,33 @@ export default function Product({ product, handleDelete, handleDeleteFromCart, h
         };
     }, [numProd]);
     function postToCart() {
-
-        const data = {
-            idProd: product.id,
-            idUser: user.id,
-            prodName: product.name,
-            prodImage: product.image,
-            prodPrice: product.price,
-            qty: numProd
-        };
-        fetch('http://localhost/next/postToCart.php', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => {
-                if (response.ok) {
-                    console.log('Data successfully posted to database!');
-                } else {
-                    console.log('Failed to post data to database');
+        if (user){
+            const data = {
+                idProd: product.id,
+                idUser: user.id,
+                prodName: product.name,
+                prodImage: product.image,
+                prodPrice: product.price,
+                qty: numProd
+            };
+            fetch('http://localhost/next/postToCart.php', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
             })
-            .catch(error => console.error(error));
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Data successfully posted to database!');
+                    } else {
+                        console.log('Failed to post data to database');
+                    }
+                })
+                .catch(error => console.error(error));
+        }else{
+            alert('Connecter Vous Pour Ajouter au Panier')
+        }
     };
     if (handleDeleteFromCart) {
         return (
@@ -99,7 +104,7 @@ export default function Product({ product, handleDelete, handleDeleteFromCart, h
                 </Link>
                 <p>{product.name}</p>
                 <div className="flex inputs">
-                    {handleDelete ?
+                    {deletion ?
                         ""
                         :
                         <div className="row-inputs">
@@ -109,8 +114,8 @@ export default function Product({ product, handleDelete, handleDeleteFromCart, h
                         </div>
                     }
                     {
-                        handleDelete ?
-                            <button className="btn-Prod delete-btn" vlaue="Suprimer le produit" onClick={() => handleDelete(product.id)}>Suprimer le produit</button>
+                        deletion ?
+                            <button className="btn-Prod delete-btn" vlaue="Suprimer le produit" onClick={() => deletion(product.id)}>Suprimer le produit</button>
                             :
                             <button className="btn-Prod" vlaue="Ajouter au Panier" onClick={postToCart}>Ajouter au Panier</button>
                     }

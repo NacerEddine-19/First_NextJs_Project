@@ -1,5 +1,5 @@
 export default function CommandsManager() {
     return(
-        <div></div>
+        <h1 className="title">TOTAL DES COMMANDES PASSÉES</h1>
     )
 }

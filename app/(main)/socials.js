@@ -8,25 +8,14 @@ import {
 import Link from 'next/link';
 import useUser from '../hooks/useUser';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 export default function Socials() {
     const [user] = useUser();
-
-    const router = useRouter();
-
+    const [shouldRender, setShouldRender] = useState(false);
 
     useEffect(() => {
-        if (user && user.user_type === 'admin') {
-            router.push('../adminDashboard');
-        }
-
-        return () => {
-            return 0;
-        }
-    }, [user])
-
-
-
+        setShouldRender(true);
+    }, [user]);
 
 
     return (
@@ -36,11 +25,11 @@ export default function Socials() {
                 <FontAwesomeIcon icon={faTwitter} />
                 <FontAwesomeIcon icon={faInstagram} />
             </div>
-            {user === null ? <div className="sign-up">
+            {!user && shouldRender ? <div className="sign-up">
                 nouvelle
                 <Link href={`/login`}>
                     <span className="orange"> connexion</span>
-                </Link> | <span className="orange">S'inscrire</span>
+                </Link> | <Link href={`/signUp`}><span className="orange">S'inscrire</span></Link>
             </div> : <div>
                 <h1>Welcome <span className="orange">{user?.name}</span>!</h1>
             </div>}

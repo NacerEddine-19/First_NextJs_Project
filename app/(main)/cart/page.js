@@ -1,5 +1,4 @@
 'use client'
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import useUser from "../../hooks/useUser";
@@ -14,7 +13,6 @@ export default function Cart() {
 
     function handleCountChangeDB() {
         setToggleChangeCount(!toggleChangeCount)
-        console.log(toggleChangeCount);
     }
 
     useEffect(() => {
@@ -38,13 +36,46 @@ export default function Cart() {
                     console.error(error);
                 });
         }
-
-        console.log(user);
-        console.log(ProdCart);
     }, [user, toggleDel, toggleChangeCount])
 
+    useEffect(() => {
+        const newProdCart = ProdCart;
+        setProdCart(newProdCart)
+
+        return () => {
+            return 0;
+        }
+    }, [toggleDel])
+
+    const deleteAll = () => {
+        const userId = user?.id;
+        fetch(`http://localhost/next/postToCart.php`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userId })
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    // alert(`Product deleted successfully !`);
+                } else {
+                    // alert(`Error deleting product !`);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                alert(`Error deleting product with ID ${id}!`);
+            }).finally(() => {
+                setProdCart((prevCart) => prevCart.filter((prod) => prod.id !== id));
+                setToggleDel(!toggleDel);
+            });
+    }
+
+
     function handleDeleteFromCart(id) {
-        setToggleDel(false);
+        setToggleDel(!toggleDel);
         fetch(`http://localhost/next/postToCart.php`, {
             method: "DELETE",
             headers: {
@@ -55,15 +86,18 @@ export default function Cart() {
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
-                    alert(`Product with ID ${id} deleted successfully!`);
+                    // alert(`Product deleted successfully !`);
                 } else {
-                    alert(`Error deleting product with ID ${id}!`);
+                    // alert(`Error deleting product !`);
                 }
             })
             .catch((error) => {
                 console.error(error);
                 alert(`Error deleting product with ID ${id}!`);
-            }).finally(setToggleDel(true));
+            }).finally(() => {
+                setProdCart((prevCart) => prevCart.filter((prod) => prod.id !== id));
+                setToggleDel(!toggleDel);
+            });
     }
 
     return (<>
@@ -86,7 +120,7 @@ export default function Cart() {
                 </div>
 
                 <div>
-                    <a href="" className="delete-btn btn">supprimer tout</a>
+                    <button onClick={deleteAll} className="delete-btn btn">supprimer tout</button>
                 </div>
 
                 <div className="cart-total">
@@ -100,37 +134,7 @@ export default function Cart() {
 
             </section>
             :
-            <p className="empty">Votre panier est vide</p>):<p className="empty">Connecter vous pour voir votre Panier</p>}
-        {/* {ProdCart ?
-            <section className="shopping-cart">
+            <p className="empty">Votre panier est vide</p>) : <p className="empty">Connecter vous pour voir votre Panier</p>}
 
-                <h1 className="title">PRODUITS AJOUTÉS</h1>
-
-                <div className="box-container">
-                    <div className="products-column">
-                        {ProdCart?.map((product) => (
-                            <Product product={product} key={product.id} handleDeleteFromCart={handleDeleteFromCart} handleCountChangeDB={handleCountChangeDB} />
-                        ))}
-                    </div>
-
-                </div>
-
-                <div>
-                    <a href="" className="delete-btn btn">supprimer tout</a>
-                </div>
-
-                <div className="cart-total">
-                    <p>total général : <span>{totalPrice}/- MAD</span></p>
-                    <div className="flex">
-                        <Link href="/" className="option-btn btn">Continuer vos achats</Link>
-                        <Link href="/checkout" className="btn">Passer à la caisse</Link>
-                    </div>
-                </div>
-
-
-            </section>
-            :
-            <p className="empty">Votre panier est vide</p>
-        } */}
     </>)
 }

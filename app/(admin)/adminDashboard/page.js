@@ -16,6 +16,7 @@ export default function Admin() {
     }, [])
 
     useEffect(() => {
+        
         for (let i = 0; i < data?.length; i++) {
             const element = data[i];
             const elementName = Object.keys(element[0])[0];
