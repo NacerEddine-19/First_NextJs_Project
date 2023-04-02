@@ -1,11 +1,13 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 
-### this is just learning Project and I am using Nextjs 13 Beta [Next.js](https://beta.nextjs.org/docs/getting-started)
+### this is just learning Project and I am using Nextjs 13 Beta [Next.js 13](https://beta.nextjs.org/docs/getting-started)
 
 ## Getting Started
 
-First, run the development server:
+After starting the project:
+
+--First, run the development server:
 
 ```bash
 npm run dev
