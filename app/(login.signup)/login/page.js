@@ -36,21 +36,24 @@ export default function LoginPage() {
                 }
             }).then(res => {
                 if (res !== 'undefined' && res[0] !== 'undefined') {
-                    setUserAndStore(res[0]);
-                    console.log(res);
-                    console.log(res[0]);
-                    const role = res[0].user_type
-
-                    if (role === 'admin') {
-                        router.push('/adminDashboard')
-                    } else if (role === 'user') {
-                        router.push('/')
-                    }
+                    const userRes = res[0];
+                    setUserAndStore(userRes);
+                    console.log(user);
                 }
 
             })
             .catch(error => console.error(error));
     };
+    useEffect(() => {
+        if (user) {
+            const role = user.user_type;
+            if (role === "admin") {
+                router.push("/adminDashboard");
+            } else if (role === "user") {
+                router.push("/");
+            }
+        }
+    }, [user]);
 
     return (
         <div className={styles.formContainer}>

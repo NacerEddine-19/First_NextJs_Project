@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBars } from "@fortawesome/free-solid-svg-icons"
 import Link from 'next/link'
 import useUser from '../../hooks/useUser';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Nav() {
@@ -13,14 +13,21 @@ export default function Nav() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [selectedLink, setselectedLink] = useState();
 
-
-    if (user) {
-        if (user?.user_type !== 'admin') {
-            router.push('/login')
+    useEffect(() => {
+        if (user) {
+            if (user?.user_type !== 'admin') {
+                router.push('/login')
+            } else if (user?.user_type == 'user') {
+                router.push('/')
+            }
+        } else {
+            router.push('/adminDashboard')
         }
-    } else {
-        // router.push('/login')
-    }
+        return () => {
+            return 0;
+        };
+    }, [user]);
+
     function handleClickLink(e) {
         setselectedLink(e.target.dataset.value);
         const link = e.target.getAttribute("data-active");
