@@ -5,8 +5,10 @@ import Link from 'next/link'
 import useUser from '../hooks/useUser';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export default function Nav() {
+    const router = useRouter()
     const [user, setUser, clearUser] = useUser();
     const [showBox, setShowBox] = useState(false);
     const [ProdCart, setProdCart] = useState()

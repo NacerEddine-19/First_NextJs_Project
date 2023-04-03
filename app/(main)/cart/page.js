@@ -68,7 +68,6 @@ export default function Cart() {
                 console.error(error);
                 alert(`Error deleting product with ID ${id}!`);
             }).finally(() => {
-                setProdCart((prevCart) => prevCart.filter((prod) => prod.id !== id));
                 setToggleDel(!toggleDel);
             });
     }
