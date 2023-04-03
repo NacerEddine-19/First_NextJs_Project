@@ -50,7 +50,7 @@ export default function Product({ product, deletion, handleDeleteFromCart, handl
         };
     }, [numProd]);
     function postToCart() {
-        if (user){
+        if (user) {
             const data = {
                 idProd: product.id,
                 idUser: user.id,
@@ -73,9 +73,11 @@ export default function Product({ product, deletion, handleDeleteFromCart, handl
                         console.log('Failed to post data to database');
                     }
                 })
-                .catch(error => console.error(error));
-        }else{
-            alert('Connecter Vous Pour Ajouter au Panier')
+                .catch(error => console.error(error))
+                .finally(alert('produit ajouter au panier'));
+        } else {
+            alert('Connecter Vous Pour Acheter des produits')
+            return;
         }
     };
     if (handleDeleteFromCart) {

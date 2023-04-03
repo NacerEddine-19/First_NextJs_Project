@@ -37,8 +37,8 @@ export default function Nav() {
         setselectedLink(link);
     }
     const logout = () => {
-        clearUser()
         router.push('/')
+        clearUser()
     }
 
     const toggleBox = () => {

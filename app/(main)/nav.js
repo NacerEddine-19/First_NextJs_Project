@@ -15,7 +15,7 @@ export default function Nav() {
     const [menuOpen, setMenuOpen] = useState(false);
     const pathname = usePathname();
     const [selectedLink, setselectedLink] = useState(`${pathname.slice(1)}`);
-    
+
     useEffect(() => {
         if (user !== null) {
             fetch(`http://localhost/next/postToCart.php?id=${user?.id}`)
@@ -88,7 +88,7 @@ export default function Nav() {
                 <div>
                     <Link href={'/cart'}>
                         <FontAwesomeIcon style={{ color: ProdCart && "red" }} className='fa-icon' icon={faShoppingCart} />
-                        <span style={{ color: ProdCart && !loading && "red" }}>({ CountProd})</span>
+                        <span style={{ color: ProdCart && !loading && "red" }}>({user && (CountProd || 0)})</span>
                     </Link>
                 </div>
             </div>
