@@ -12,16 +12,19 @@ export default function Nav() {
     const [showBox, setShowBox] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [selectedLink, setselectedLink] = useState();
-
+    console.log(user);
     useEffect(() => {
         if (user) {
             if (user?.user_type !== 'admin') {
                 router.push('/login')
             } else if (user?.user_type == 'user') {
                 router.push('/')
+            } else {
+                router.push('/adminDashboard')
+
             }
         } else {
-            router.push('/adminDashboard')
+            router.push('/login')
         }
         return () => {
             return 0;
@@ -34,8 +37,8 @@ export default function Nav() {
         setselectedLink(link);
     }
     const logout = () => {
-        router.push('/')
         clearUser()
+        router.push('/')
     }
 
     const toggleBox = () => {

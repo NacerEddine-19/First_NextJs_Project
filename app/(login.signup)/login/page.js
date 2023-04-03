@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function LoginPage() {
     const router = useRouter();
     const [email, setEmail] = useState('');
-    const [pwd, setPwd] = useState(123);
+    const [pwd, setPwd] = useState();
     const [user, setUserAndStore] = useUser(null);
 
     function handleChangeEmail(event) {

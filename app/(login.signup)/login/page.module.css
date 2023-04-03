@@ -1,6 +1,7 @@
 .formContainer {
     min-height: 100vh;
-    background-color: var(--light-bg);
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(/photos/Banner1.jpg) no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,7 +14,7 @@
     border-radius: 0.8rem;
     box-shadow: var(--box-shadow);
     border: var(--border);
-    background-color: var(--white);
+    background-color: rgba(255, 255, 255, 0.7);
     text-align: center;
 }
 
