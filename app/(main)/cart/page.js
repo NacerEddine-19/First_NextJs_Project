@@ -104,7 +104,7 @@ export default function Cart() {
             <h3>PANIER</h3>
             <p> <Link href="/">accueil</Link> / panier </p>
         </div>
-        {user ? (ProdCart ?
+        {user ? (ProdCart?.length !== 0 ?
             <section className="shopping-cart">
 
                 <h1 className="title">PRODUITS AJOUTÉS</h1>
@@ -112,7 +112,11 @@ export default function Cart() {
                 <div className="box-container">
                     <div className="products-column">
                         {ProdCart?.map((product) => (
-                            <Product product={product} key={product.id} handleDeleteFromCart={handleDeleteFromCart} handleCountChangeDB={handleCountChangeDB} />
+                            <Product
+                                product={product}
+                                key={product.id}
+                                handleDeleteFromCart={handleDeleteFromCart}
+                                handleCountChangeDB={handleCountChangeDB} />
                         ))}
                     </div>
 

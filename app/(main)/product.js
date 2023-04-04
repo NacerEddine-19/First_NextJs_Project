@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
 import useUser from '../hooks/useUser';
-export default function Product({ product, deletion, handleDeleteFromCart, handleCountChangeDB }) {
+export default function Product({ product, handleDelete, handleDeleteFromCart, handleCountChangeDB }) {
     const [numProd, setNumProd] = useState(handleCountChangeDB ? parseInt(product.quantity) : 1);
     const [user] = useUser();
 
@@ -74,7 +74,10 @@ export default function Product({ product, deletion, handleDeleteFromCart, handl
                     }
                 })
                 .catch(error => console.error(error))
-                .finally(alert('produit ajouter au panier'));
+                .finally(() => {
+                    window.location.reload(true);
+                    alert('produit ajouter au panier');
+                });
         } else {
             alert('Connecter Vous Pour Acheter des produits')
             return;
@@ -106,7 +109,7 @@ export default function Product({ product, deletion, handleDeleteFromCart, handl
                 </Link>
                 <p>{product.name}</p>
                 <div className="flex inputs">
-                    {deletion ?
+                    {handleDelete ?
                         ""
                         :
                         <div className="row-inputs">
@@ -116,10 +119,20 @@ export default function Product({ product, deletion, handleDeleteFromCart, handl
                         </div>
                     }
                     {
-                        deletion ?
-                            <button className="btn-Prod delete-btn" vlaue="Suprimer le produit" onClick={() => deletion(product.id)}>Suprimer le produit</button>
+                        handleDelete ?
+                            <button
+                                className="btn-Prod delete-btn"
+                                vlaue="Suprimer le produit"
+                                onClick={() => handleDelete(product.id)}>
+                                Suprimer le produit
+                            </button>
                             :
-                            <button className="btn-Prod" vlaue="Ajouter au Panier" onClick={postToCart}>Ajouter au Panier</button>
+                            <button
+                                className="btn-Prod"
+                                vlaue="Ajouter au Panier"
+                                onClick={postToCart}>
+                                Ajouter au Panier
+                            </button>
                     }
 
                 </div>

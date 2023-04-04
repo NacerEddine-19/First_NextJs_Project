@@ -579,8 +579,8 @@ link {
   border-radius: 0.5rem;
   border: var(--border);
   padding: 2rem;
-  max-width: 30rem;
-  margin: 0 auto;
+  max-width: 55rem;
+  margin: 2rem auto 0;
   text-align: center;
 }
 

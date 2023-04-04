@@ -4,15 +4,15 @@ import { faUser, faBars } from "@fortawesome/free-solid-svg-icons"
 import Link from 'next/link'
 import useUser from '../../hooks/useUser';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function Nav() {
     const router = useRouter();
     const [user, setUser, clearUser] = useUser();
     const [showBox, setShowBox] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-    const [selectedLink, setselectedLink] = useState();
-    console.log(user);
+    const pathname = usePathname();
+    const [selectedLink, setselectedLink] = useState(`${pathname == '/adminDashboard' ? 'home' : pathname.slice(16)}`);
     useEffect(() => {
         if (user) {
             if (user?.user_type !== 'admin') {
@@ -20,7 +20,7 @@ export default function Nav() {
             } else if (user?.user_type == 'user') {
                 router.push('/')
             } else {
-                router.push('/adminDashboard')
+                router.push(`${pathname}`)
 
             }
         } else {
@@ -30,6 +30,13 @@ export default function Nav() {
             return 0;
         };
     }, [user]);
+    useEffect(() => {
+        setselectedLink(`${pathname == '/adminDashboard' ? 'home' : pathname.slice(16)}`)
+
+        return () => {
+            return null;
+        }
+    }, [pathname])
 
     function handleClickLink(e) {
         setselectedLink(e.target.dataset.value);
