@@ -16,7 +16,16 @@ export default function Nav() {
     const [loading, setLoading] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
     const pathname = usePathname();
-    const [selectedLink, setselectedLink] = useState(`${pathname.slice(1)}`);
+    const [selectedLink, setselectedLink] = useState(`${pathname == '/' ? 'home' : pathname.slice(1)}`);
+
+    useEffect(() => {
+        setselectedLink(`${pathname == '/' ? 'home' : pathname.slice(1)}`)
+
+        return () => {
+            return null;
+        }
+    }, [pathname])
+
 
     useEffect(() => {
         if (user !== null) {
@@ -69,11 +78,37 @@ export default function Nav() {
             <Link href="/" className="logo"><img src="/photos/logo-1.png" width="180px" /></Link>
 
             <nav className={`nav flex ${menuOpen ? 'show' : 'dShow'}`}>
-                <Link className={`${selectedLink === "home" ? "activeLink" : "notActive"}`} data-active="home" data-value={'home'} onClick={handleClickLink} href="/">Accueil</Link>
-                <Link className={`${selectedLink === "about" ? "activeLink" : "notActive"}`} data-active="about" data-value={'about'} onClick={handleClickLink} href="/about">Apropos</Link>
-                <Link className={`${selectedLink === "shop" ? "activeLink" : "notActive"}`} data-active="shop" data-value={'shop'} onClick={handleClickLink} href="/store">Magasin</Link>
-                <Link className={`${selectedLink === "contact" ? "activeLink" : "notActive"}`} data-active="contact" data-value={'contact'} onClick={handleClickLink} href="/contact">contact</Link>
-                <Link className={`${selectedLink === "orders" ? "activeLink" : "notActive"}`} data-active="orders" data-value={'orders'} onClick={handleClickLink} href="#">Commandes</Link>
+                <Link
+                    className={`${selectedLink === "home" ? "activeLink" : "notActive"}`}
+                    data-active="home"
+                    data-value={'home'}
+                    onClick={handleClickLink}
+                    href="/">Accueil
+                </Link>
+                <Link
+                    className={`${selectedLink === "about" ? "activeLink" : "notActive"}`}
+                    data-active="about"
+                    data-value={'about'}
+                    onClick={handleClickLink}
+                    href="/about">Apropos</Link>
+                <Link
+                    className={`${selectedLink === "store" ? "activeLink" : "notActive"}`}
+                    data-active="store"
+                    data-value={'store'}
+                    onClick={handleClickLink}
+                    href="/store">Magasin</Link>
+                <Link
+                    className={`${selectedLink === "contact" ? "activeLink" : "notActive"}`}
+                    data-active="contact"
+                    data-value={'contact'}
+                    onClick={handleClickLink}
+                    href="/contact">contact</Link>
+                <Link
+                    className={`${selectedLink === "orders" ? "activeLink" : "notActive"}`}
+                    data-active="orders"
+                    data-value={'orders'}
+                    onClick={handleClickLink}
+                    href="/commandes">Commandes</Link>
             </nav>
             <div className="flex icons">
                 <FontAwesomeIcon onClick={toggleMenu} className='bars fa-icon' icon={faBars} />
