@@ -23,7 +23,7 @@ export default function Home() {
   return (<>
 
     <Hero />
-    <div className='annonce'>derniers produits</div>
+    <div className='annonce'>Produits populaires</div>
     <Products limit={9} />
     <section className="home-contact">
       <div className="content">
