@@ -5,11 +5,9 @@ import Nav from './nav';
 import Footer from "./footer";
 import { Suspense } from "react";
 export default function Layout({
-    children, // will be a page or nested layout
-    // session,
+    children,
 }) {
     return (
-        // <SessionProvider>
         <section>
             <Suspense fallback={<Loading />}>
                 <Socials />
@@ -18,6 +16,5 @@ export default function Layout({
                 <Footer />
             </Suspense>
         </section>
-        // </SessionProvider>// session={session}
     );
 }

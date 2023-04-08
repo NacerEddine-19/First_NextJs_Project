@@ -51,6 +51,18 @@ export default function Nav() {
             return 0;
         }
     }, [loading])
+    useEffect(() => {
+        function handleClickOutside(event) {
+            const userBox = document.querySelector('.user-box');
+            if (userBox && !userBox.contains(event.target)) {
+                setShowBox(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showBox]);
 
     function handleClickLink(e) {
         setselectedLink(e.target.dataset.value);

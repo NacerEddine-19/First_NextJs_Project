@@ -28,7 +28,7 @@ export default function Home() {
     <section className="home-contact">
       <div className="content">
         <h3>CLIQUEZ ET RÉCUPÉREZ LIVRAISON GRATUITE</h3>
-        <Link href="/contact" className="white-btn">découvrez Maintenant</Link>
+        <Link href="/store" className="white-btn">découvrez Plus</Link>
       </div>
     </section>
   </>
