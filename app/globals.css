@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap");
 
+* {
+  font-family: "Rubik", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  transition: all 0.2s linear;
+  user-select: none;
+}
+
 :root {
   --green: #008B45;
   --purple: #8e44ad;
@@ -13,6 +23,11 @@
   --light-bg: #f5f5f5;
   --border: 0.1rem solid var(--black);
   --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+.link-a {
+  color: var(--blue);
+  font-size: 1.5rem;
 }
 
 .layout-login {
@@ -84,15 +99,6 @@
   justify-content: space-between;
 }
 
-* {
-  font-family: "Rubik", sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  transition: all 0.2s linear;
-  user-select: none;
-}
 
 
 html,
@@ -110,13 +116,24 @@ a {
 
 .btn {
   display: inline-block;
-  padding: 1rem 3rem;
+  padding: .5rem 2rem;
   cursor: pointer;
   color: var(--white);
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   border-radius: 0.5rem;
   text-transform: capitalize;
   background-color: var(--blue);
+  border: none;
+  margin-block: .5rem;
+}
+
+.icon-trash {
+  display: grid;
+  place-items: center;
+}
+
+.trash:hover {
+  color: red;
 }
 
 .btn:hover {
@@ -202,6 +219,11 @@ a {
   animation: fadeIn 0.2s linear;
 }
 
+.user-box span {
+  color: var(--blue);
+  font-weight: bold;
+  font-size: 2rem;
+}
 
 
 /* .user-log:hover button {
@@ -288,7 +310,10 @@ a {
 
 .product {
   position: relative;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   font-size: 1.5rem;
   color: var(--black);
   border-radius: 0.5rem;
@@ -310,6 +335,7 @@ a {
   width: 100%;
   justify-content: space-around;
   align-items: center;
+  margin-block: 0.5rem;
 }
 
 .product img {
@@ -324,6 +350,16 @@ a {
   height: 1.8rem;
   font-size: 1.5rem;
   text-align: center;
+}
+
+.count,
+.count:focus,
+.count:focus-visible {
+  background-color: rgba(226, 226, 226, 0.2);
+  border: none;
+  margin-inline: .8rem;
+  outline: none;
+  border-radius: .5rem;
 }
 
 .product .count {
@@ -367,6 +403,7 @@ input[type=number]::-webkit-outer-spin-button {
   border-radius: 0.5rem;
   text-transform: capitalize;
   background-color: var(--blue);
+  border: none;
 }
 
 .parent {
@@ -395,6 +432,7 @@ input[type=number]::-webkit-outer-spin-button {
 .info .second .row-inputs {
   display: flex;
   align-items: flex-start;
+  
 }
 
 .info .count {
@@ -405,6 +443,7 @@ input[type=number]::-webkit-outer-spin-button {
 .info .second .row-inputs .btn-id {
   display: flex;
   flex-direction: row;
+  border: none;
 }
 
 .big {
@@ -527,6 +566,7 @@ link {
   font-size: 1.8rem;
   border-radius: 0.5rem;
   text-transform: capitalize;
+  border: none;
 }
 
 .white-btn:hover {
@@ -609,6 +649,7 @@ link {
 
 .contact .btn:hover {
   background-color: var(--green);
+  border: none;
 }
 
 .title {
@@ -840,7 +881,8 @@ link {
 .shopping-cart .cart-total {
   max-width: 1200px;
   margin: 0 auto;
-  border: var(--border);
+  border: none;
+  background-color: #e8e8e9;
   padding: 2rem;
   text-align: center;
   margin-top: 2rem;
@@ -877,8 +919,9 @@ link {
   gap: 1rem;
   height: 10rem;
   background-color: rgb(243, 243, 243);
-  -webkit-border-block: .5px solid var(--light-color);
-  border-block: .5px solid var(--light-color);
+  -webkit-border-block: .5px solid var(--light-white);
+  border-block: .5px solid var(--light-white);
+  padding-block: 6rem;
 }
 
 .product-cart>* {
@@ -896,6 +939,11 @@ link {
   align-items: center;
 }
 
+.prod-info-cart .count {
+  font-weight: bolder;
+  background-color: transparent;
+}
+
 .prod-info-cart .count,
 .add,
 .minus {
@@ -903,6 +951,8 @@ link {
   height: 1.8rem;
   font-size: 1.5rem;
   text-align: center;
+  border: none;
+  margin-inline: .2rem;
 }
 
 .empty {
@@ -918,6 +968,7 @@ link {
 .delete-btn {
   background-color: var(--red);
   padding: .5rem 3rem;
+  border: none;
 }
 
 .activeLink {
@@ -984,19 +1035,20 @@ link {
 }
 
 .form-container form .box {
-  width: 100%;
+  width: 80%;
   border-radius: 0.5rem;
   background-color: var(--light-bg);
-  padding: 1.2rem 1.4rem;
-  font-size: 1.8rem;
+  padding: 1rem 1.2rem;
+  font-size: 1.2rem;
   color: var(--black);
   border: var(--border);
   margin: 1rem 0;
+  border: none;
 }
 
 .form-container form p {
   padding-top: 1.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--black);
 }
 
@@ -1010,23 +1062,27 @@ link {
 
 .form-container .btn {
   text-decoration: none;
+  border: none;
 }
 
 .form-container .btn.disabled {
   background-color: gray;
   cursor: not-allowed;
+  border: none;
 }
 
 .form-container .box.green {
   border: 0.1rem solid #008B45 !important;
   outline: none;
   box-shadow: 0 0.1rem .5rem #008B45;
+  border: none;
 }
 
 .form-container .box.red {
   outline: none;
   border: 0.1rem solid var(--red) !important;
   box-shadow: 0 0.1rem .5rem red;
+  border: none;
 }
 
 .form-container .box.green:focus {

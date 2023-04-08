@@ -159,11 +159,12 @@ export default function SignUp() {
                 <input
                     type="submit"
                     name="submit"
-                    value="S'inscrire maintenant"
+                    value="S'inscrire"
                     className={`btn ${!nameIsValid || !pwdIsValid || !emailIsValid || !pwdIsConfirmed ? 'disabled' : ''}`}
                     disabled={!nameIsValid || !pwdIsValid || !emailIsValid || !pwdIsConfirmed}
                 />
-                <p>Vous avez déjà un compte? <Link href="/login">Connecte-vous maintenant</Link></p>
+                <p>Vous avez déjà un compte? </p>
+                <Link href="/login" className="link-a">Connecte-vous</Link>
             </form>
 
         </div>

@@ -1,6 +1,6 @@
 'use client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from "@fortawesome/free-solid-svg-icons"
+import { faXmark, faTrash } from "@fortawesome/free-solid-svg-icons"
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
@@ -14,8 +14,12 @@ export default function Product({ product, handleDelete, handleDeleteFromCart, h
     function addProd() {
         if (isNaN(numProd)) {
             setNumProd(1);
+        } else if (numProd > 24) {
+            setNumProd(25);
+        } else {
+
+            setNumProd((prev) => prev + 1);
         }
-        setNumProd((prev) => prev + 1);
         { handleCountChangeDB ? handleCountChangeDB() : null };
     }
     function minusProd() {
@@ -75,7 +79,6 @@ export default function Product({ product, handleDelete, handleDeleteFromCart, h
                 })
                 .catch(error => console.error(error))
                 .finally(() => {
-                    window.location.reload(true);
                     alert('produit ajouter au panier');
                 });
         } else {
@@ -97,7 +100,9 @@ export default function Product({ product, handleDelete, handleDeleteFromCart, h
                         <div className="add" onClick={addProd}>+</div>
                     </div>
                 </div>
-                <FontAwesomeIcon style={{ color: "red", cursor: "pointer" }} icon={faXmark} size="2xl" onClick={e => handleDeleteFromCart(product.id)} />
+                <div className="icon-trash">
+                    <FontAwesomeIcon className='trash' style={{ fontSize: "1.5rem", cursor: "pointer" }} icon={faTrash} size="2xl" onClick={e => handleDeleteFromCart(product.id)} />
+                </div>
             </div>
         )
     } else {

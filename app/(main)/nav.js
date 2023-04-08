@@ -118,7 +118,7 @@ export default function Nav() {
                     <FontAwesomeIcon onClick={toggleBox} className="fa-icon" icon={faUser} />
 
                     {showBox && <div className="user-box">
-                        <p>nom d' utilisateur : <span>{user.name}</span></p>
+                        <p>utilisateur : <span>{user.name}</span></p>
                         <button className='delete-btn btn' onClick={handleLogout}>Logout</button>
                     </div>}
                 </div>}

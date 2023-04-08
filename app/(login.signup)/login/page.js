@@ -62,7 +62,8 @@ export default function LoginPage() {
                 <input type="email" value={email} name="email" placeholder="entrer votre Email" required className={styles.box} onChange={handleChangeEmail}></input>
                 <input type="password" value={pwd} name="pwd" placeholder="enter votre mot de passe" required className={styles.box} onChange={handleChangePwd}></input>
                 <input type="submit" name="submit" value="login" className={styles.btn}></input>
-                <p>vous n'avez pas de compte ? <Link href="/signUp">S'inscrire maintenant</Link></p>
+                <p>vous n'avez pas de compte ? </p>
+                <Link href="/signUp" className='link-a' a>S'inscrire maintenant</Link>
             </form>
         </div>
     );
