@@ -89,11 +89,7 @@ export default function SignUp() {
     }, [password]);
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if (!pwdIsConfirmed) {
-        //     alert("Veuillez confirmer votre mot de passe.");
-        //     return;
-        // }
-
+        
         const formData = new FormData();
         formData.append("name", name);
         formData.append("email", email);

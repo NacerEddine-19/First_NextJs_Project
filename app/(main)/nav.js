@@ -8,13 +8,13 @@ import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 
 export default function Nav() {
-    const router = useRouter()
     const [user, setUser, clearUser] = useUser();
     const [showBox, setShowBox] = useState(false);
     const [ProdCart, setProdCart] = useState()
     const [CountProd, setCountProd] = useState()
     const [loading, setLoading] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [linkClicked, setLinkClicked] = useState(false);
     const pathname = usePathname();
     const [selectedLink, setselectedLink] = useState(`${pathname == '/' ? 'home' : pathname.slice(1)}`);
 
@@ -68,6 +68,7 @@ export default function Nav() {
         setselectedLink(e.target.dataset.value);
         const link = e.target.getAttribute("data-active");
         setselectedLink(link);
+        setLinkClicked(!linkClicked);
     }
 
     const handleLogout = () => {
@@ -83,7 +84,12 @@ export default function Nav() {
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
-
+    useEffect(() => {
+        setMenuOpen(false);
+        return () => {
+            return null;
+        };
+    }, [linkClicked]);
 
     return (
         <nav className="flex navbar">

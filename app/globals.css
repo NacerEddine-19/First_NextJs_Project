@@ -1207,12 +1207,12 @@ link {
   }
 
   .show {
-    animation: show 1.2s cubic-bezier(0, 0.5, 0.5, 1) forwards;
+    animation: show .1s cubic-bezier(0, 0.5, 0.5, 1) forwards;
   }
 
   .dShow {
     display: none;
-    animation: dShow 1.2s cubic-bezier(0, 0.5, 0.5, 1) forwards;
+    animation: dShow .1s cubic-bezier(0, 0.5, 0.5, 1) forwards;
   }
 
   @keyframes show {
