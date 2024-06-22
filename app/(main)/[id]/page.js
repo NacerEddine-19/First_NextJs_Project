@@ -38,7 +38,7 @@ export default function Product({ params }) {
     function postToCart() {
         const id = product.id;
         const data = `{"id" :"${id}"}`;
-        fetch('http://localhost/next/get_prod.php', {
+        fetch('http://localhost/next/postToCart.php', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {

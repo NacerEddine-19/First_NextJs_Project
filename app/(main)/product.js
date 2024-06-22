@@ -96,7 +96,7 @@ export default function Product({ product, handleDelete, handleDeleteFromCart, h
                     <h1>{product.name}</h1>
                     <div className="row-inputs-cart">
                         <div className="minus" onClick={minusProd} >-</div>
-                        <input className="count" min="1" type="number" value={numProd} onChange={event => handleCountChange(event)}></input>
+                        <input className="count" min="1" type="number" disabled value={numProd} onChange={event => handleCountChange(event)}></input>
                         <div className="add" onClick={addProd}>+</div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@ export default function Product({ product, handleDelete, handleDeleteFromCart, h
                         :
                         <div className="row-inputs">
                             <div className="minus" onClick={minusProd} >-</div>
-                            <input className="count" min="1" type="number" value={numProd} onChange={event => handleCountChange(event)}></input>
+                            <input className="count" min="1" type="number" disabled value={numProd} onChange={event => handleCountChange(event)}></input>
                             <div className="add" onClick={addProd}>+</div>
                         </div>
                     }

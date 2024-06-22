@@ -20,7 +20,7 @@ export default function Cart() {
         for (let i = 0; i < ProdCart?.length; i++) {
             total += ProdCart[i].price * ProdCart[i].quantity;
         }
-        setTotalPrice(total);
+        setTotalPrice(total.toFixed(2));
 
         return () => {
             return 0;

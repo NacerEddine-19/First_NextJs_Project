@@ -63,7 +63,9 @@ export default function LoginPage() {
                 <input type="password" value={pwd} name="pwd" placeholder="enter votre mot de passe" required className={styles.box} onChange={handleChangePwd}></input>
                 <input type="submit" name="submit" value="login" className={styles.btn}></input>
                 <p>vous n'avez pas de compte ? </p>
-                <Link href="/signUp" className='link-a' a>S'inscrire maintenant</Link>
+                <Link href="/signUp" className='link-a'>S'inscrire maintenant</Link>
+                <p>Ou</p>
+                <Link href="/" className='link-a'>Continuer en tant qu'invité</Link>
             </form>
         </div>
     );
